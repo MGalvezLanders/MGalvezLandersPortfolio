@@ -112,7 +112,7 @@ export const projects: Project[] = [
 export const stats = [
   { value: '800', suffix: '+ hs', label: 'de formación intensiva en Henry' },
   { value: '5', suffix: '+', label: 'proyectos en producción' },
-  { value: 'C2', suffix: '', label: 'Inglés certificado (EF SET)' },
+  { value: 'B1', suffix: '', label: 'Inglés certificado (EF SET)' },
   { value: '13', suffix: ' años', label: 'de rugby competitivo' },
 ]
 
@@ -151,10 +151,10 @@ export type Certification = {
 
 export const certifications: Certification[] = [
   {
-    name: 'EF SET — Inglés C2 Proficiente',
+    name: 'EF SET — Inglés B1 Intermedio',
     issuer: 'EF Standard English Test',
-    detail: '71/100 — Nivel C2 (Proficiente)',
-    url: 'https://cert.efset.org/es/y19puv',
+    detail: '50/100 — Nivel B1 (Intermedio)',
+    url: 'https://cert.efset.org/y19puv',
   },
 ]
 
@@ -191,7 +191,7 @@ export const contact = {
   linkedin: 'https://linkedin.com/in/maximo-galvez-landers-2487352b8',
   github: 'https://github.com/MGalvezLanders',
   location: 'Tucumán, Argentina (disponible remoto)',
-  efSetUrl: 'https://cert.efset.org/es/y19puv',
+  efSetUrl: 'https://cert.efset.org/y19puv',
 }
 
 export const navLinks = [

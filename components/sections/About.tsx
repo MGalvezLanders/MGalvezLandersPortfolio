@@ -115,7 +115,7 @@ export default function About() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-1.5 text-accent-light underline decoration-accent/40 underline-offset-4 transition-colors duration-300 hover:text-accent hover:decoration-accent"
               >
-                Inglés C2 certificado (EF SET) <ExternalLink size={14} />
+                Inglés B1 Intermedio certificado (EF SET) <ExternalLink size={14} />
               </a>
               . Disponible para trabajo remoto y proyectos freelance.
             </p>
