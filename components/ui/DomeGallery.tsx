@@ -347,12 +347,17 @@ export default function DomeGallery({
       };
       const animatingOverlay = document.createElement('div');
       animatingOverlay.className = 'enlarge-closing';
-      animatingOverlay.style.cssText = `position:absolute;left:${overlayRelativeToRoot.left}px;top:${overlayRelativeToRoot.top}px;width:${overlayRelativeToRoot.width}px;height:${overlayRelativeToRoot.height}px;z-index:9999;border-radius:${openedImageBorderRadius};overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:all ${enlargeTransitionMs}ms ease-out;pointer-events:none;margin:0;transform:none;filter:${grayscale ? 'grayscale(1)' : 'none'};`;
-      const originalImg = overlay.querySelector('img');
-      if (originalImg) {
-        const img = originalImg.cloneNode() as HTMLImageElement;
-        img.style.cssText = 'width:100%;height:100%;object-fit:cover;';
-        animatingOverlay.appendChild(img);
+      animatingOverlay.style.cssText = `position:absolute;left:${overlayRelativeToRoot.left}px;top:${overlayRelativeToRoot.top}px;width:${overlayRelativeToRoot.width}px;height:${overlayRelativeToRoot.height}px;z-index:9999;border-radius:${openedImageBorderRadius};overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:all ${enlargeTransitionMs}ms ease-out;pointer-events:none;margin:0;transform:none;`;
+      if (overlay.dataset.isLogoMode === '1') {
+        const inner = overlay.querySelector('.logo-inner');
+        if (inner) animatingOverlay.appendChild(inner.cloneNode(true) as HTMLElement);
+      } else {
+        const originalImg = overlay.querySelector('img');
+        if (originalImg) {
+          const img = originalImg.cloneNode() as HTMLImageElement;
+          img.style.cssText = 'width:100%;height:100%;object-fit:cover;';
+          animatingOverlay.appendChild(img);
+        }
       }
       overlay.remove();
       rootRef.current!.appendChild(animatingOverlay);
@@ -404,7 +409,6 @@ export default function DomeGallery({
   }, [enlargeTransitionMs, openedImageBorderRadius, grayscale]);
 
   const openItemFromElement = (el: HTMLElement) => {
-    if (logoMode) return;
     if (openingRef.current) return;
     openingRef.current = true;
     openStartedAtRef.current = performance.now();
@@ -444,13 +448,30 @@ export default function DomeGallery({
     (el.style as any).zIndex = 0;
     const overlay = document.createElement('div');
     overlay.className = 'enlarge';
+    overlay.dataset.isLogoMode = logoMode ? '1' : '0';
     overlay.style.cssText = `position:absolute;left:${frameR.left - mainR.left}px;top:${frameR.top - mainR.top}px;width:${frameR.width}px;height:${frameR.height}px;opacity:0;z-index:30;will-change:transform,opacity;transform-origin:top left;transition:transform ${enlargeTransitionMs}ms ease,opacity ${enlargeTransitionMs}ms ease;border-radius:${openedImageBorderRadius};overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35);`;
     const rawSrc = parent.dataset.src || (el.querySelector('img') as HTMLImageElement)?.src || '';
     const rawAlt = parent.dataset.alt || (el.querySelector('img') as HTMLImageElement)?.alt || '';
-    const img = document.createElement('img');
-    img.src = rawSrc; img.alt = rawAlt;
-    img.style.cssText = `width:100%;height:100%;object-fit:cover;filter:${grayscale ? 'grayscale(1)' : 'none'};`;
-    overlay.appendChild(img);
+    if (logoMode) {
+      const inner = document.createElement('div');
+      inner.className = 'logo-inner';
+      inner.style.cssText = `width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:18%;background:#0d1629;`;
+      const img = document.createElement('img');
+      img.src = rawSrc; img.alt = rawAlt;
+      img.style.cssText = `width:64%;height:auto;object-fit:contain;filter:${grayscale ? 'grayscale(1)' : 'none'};`;
+      img.onerror = () => { img.style.display = 'none'; };
+      const span = document.createElement('span');
+      span.textContent = rawAlt;
+      span.style.cssText = `color:rgba(255,255,255,0.88);font-size:15px;font-family:monospace;text-transform:uppercase;letter-spacing:0.1em;text-align:center;line-height:1.3;`;
+      inner.appendChild(img);
+      inner.appendChild(span);
+      overlay.appendChild(inner);
+    } else {
+      const img = document.createElement('img');
+      img.src = rawSrc; img.alt = rawAlt;
+      img.style.cssText = `width:100%;height:100%;object-fit:cover;filter:${grayscale ? 'grayscale(1)' : 'none'};`;
+      overlay.appendChild(img);
+    }
     viewerRef.current!.appendChild(overlay);
     const tx0 = tileR.left - frameR.left, ty0 = tileR.top - frameR.top;
     const sx0 = tileR.width / frameR.width, sy0 = tileR.height / frameR.height;
@@ -587,6 +608,24 @@ export default function DomeGallery({
                   {logoMode ? (
                     <div
                       className="item__image absolute overflow-hidden"
+                      role="button"
+                      tabIndex={0}
+                      aria-label={it.alt}
+                      onClick={e => {
+                        if (draggingRef.current) return;
+                        if (movedRef.current) return;
+                        if (performance.now() - lastDragEndAt.current < 80) return;
+                        if (openingRef.current) return;
+                        openItemFromElement(e.currentTarget as HTMLElement);
+                      }}
+                      onPointerUp={e => {
+                        if ((e.nativeEvent as PointerEvent).pointerType !== 'touch') return;
+                        if (draggingRef.current) return;
+                        if (movedRef.current) return;
+                        if (performance.now() - lastDragEndAt.current < 80) return;
+                        if (openingRef.current) return;
+                        openItemFromElement(e.currentTarget as HTMLElement);
+                      }}
                       style={{
                         inset: '10px',
                         borderRadius: `var(--tile-radius, ${imageBorderRadius})`,
@@ -599,7 +638,7 @@ export default function DomeGallery({
                         justifyContent: 'center',
                         padding: '14%',
                         gap: '5px',
-                        cursor: 'default',
+                        cursor: 'pointer',
                       }}
                     >
                       <img

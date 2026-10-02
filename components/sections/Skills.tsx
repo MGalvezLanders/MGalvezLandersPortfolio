@@ -62,7 +62,7 @@ export default function Skills() {
         />
       </div>
 
-      <div className="w-full" style={{ height: '680px' }}>
+      <div className="w-full" style={{ height: '520px' }}>
         <DomeGallery
           images={techItems}
           fit={0.72}
@@ -74,6 +74,9 @@ export default function Skills() {
           logoMode={true}
           overlayBlurColor="#0d1629"
           imageBorderRadius="14px"
+          openedImageWidth="260px"
+          openedImageHeight="260px"
+          openedImageBorderRadius="20px"
         />
       </div>
     </section>
