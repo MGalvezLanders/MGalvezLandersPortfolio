@@ -24,6 +24,7 @@ type DomeGalleryProps = {
   openedImageBorderRadius?: string;
   grayscale?: boolean;
   logoMode?: boolean;
+  logoTheme?: 'dark' | 'light';
 };
 
 type ItemDef = {
@@ -118,7 +119,13 @@ export default function DomeGallery({
   openedImageBorderRadius = '30px',
   grayscale = true,
   logoMode = false,
+  logoTheme = 'dark',
 }: DomeGalleryProps) {
+  const tileBg       = logoTheme === 'light' ? 'rgba(37,99,235,0.05)'   : 'rgba(255,255,255,0.05)';
+  const tileBorder   = logoTheme === 'light' ? '1px solid rgba(37,99,235,0.13)' : '1px solid rgba(255,255,255,0.08)';
+  const tileText     = logoTheme === 'light' ? 'rgba(71,85,105,0.85)'   : 'rgba(255,255,255,0.6)';
+  const overlayBg    = logoTheme === 'light' ? '#ffffff'                 : '#0d1629';
+  const overlayText  = logoTheme === 'light' ? 'rgba(15,23,42,0.88)'    : 'rgba(255,255,255,0.88)';
   const rootRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLDivElement>(null);
   const sphereRef = useRef<HTMLDivElement>(null);
@@ -455,14 +462,14 @@ export default function DomeGallery({
     if (logoMode) {
       const inner = document.createElement('div');
       inner.className = 'logo-inner';
-      inner.style.cssText = `width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:18%;background:#0d1629;`;
+      inner.style.cssText = `width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:18%;background:${overlayBg};`;
       const img = document.createElement('img');
       img.src = rawSrc; img.alt = rawAlt;
       img.style.cssText = `width:64%;height:auto;object-fit:contain;filter:${grayscale ? 'grayscale(1)' : 'none'};`;
       img.onerror = () => { img.style.display = 'none'; };
       const span = document.createElement('span');
       span.textContent = rawAlt;
-      span.style.cssText = `color:rgba(255,255,255,0.88);font-size:15px;font-family:monospace;text-transform:uppercase;letter-spacing:0.1em;text-align:center;line-height:1.3;`;
+      span.style.cssText = `color:${overlayText};font-size:15px;font-family:monospace;text-transform:uppercase;letter-spacing:0.1em;text-align:center;line-height:1.3;`;
       inner.appendChild(img);
       inner.appendChild(span);
       overlay.appendChild(inner);
@@ -630,8 +637,8 @@ export default function DomeGallery({
                         inset: '10px',
                         borderRadius: `var(--tile-radius, ${imageBorderRadius})`,
                         backfaceVisibility: 'hidden',
-                        backgroundColor: 'rgba(255,255,255,0.05)',
-                        border: '1px solid rgba(255,255,255,0.08)',
+                        backgroundColor: tileBg,
+                        border: tileBorder,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -657,7 +664,7 @@ export default function DomeGallery({
                         onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
                       />
                       <span style={{
-                        color: 'rgba(255,255,255,0.6)',
+                        color: tileText,
                         fontSize: '7.5px',
                         fontFamily: 'monospace',
                         textAlign: 'center',

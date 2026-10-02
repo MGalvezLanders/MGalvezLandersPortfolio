@@ -72,7 +72,8 @@ export default function Skills() {
           dragDampening={1.8}
           grayscale={false}
           logoMode={true}
-          overlayBlurColor="#0d1629"
+          logoTheme="light"
+          overlayBlurColor="#F4F7FB"
           imageBorderRadius="14px"
           openedImageWidth="260px"
           openedImageHeight="260px"
