@@ -10,27 +10,29 @@ export const skillCategories: SkillCategory[] = [
       'JavaScript (ES6+)',
       'TypeScript',
       'React 18',
+      'Next.js',
       'HTML5',
       'CSS3',
       'TailwindCSS',
       'Vite',
+      'Webflow',
     ],
   },
   {
     title: 'Backend',
-    skills: ['Node.js', 'Express', 'REST APIs', 'PHP'],
+    skills: ['Node.js', 'Express', 'NestJS', 'REST APIs', 'Swagger', 'Zod', 'PHP'],
   },
   {
     title: 'Bases de datos',
-    skills: ['PostgreSQL', 'Firebase (Firestore)'],
+    skills: ['PostgreSQL', 'Firebase (Firestore)', 'TypeORM', 'DBeaver'],
   },
   {
     title: 'Cloud & DevOps',
-    skills: ['AWS S3', 'Vercel', 'Git', 'GitHub', 'CI/CD'],
+    skills: ['AWS S3', 'Vercel', 'Netlify', 'Docker', 'Git', 'GitHub', 'CI/CD'],
   },
   {
     title: 'Testing',
-    skills: ['Vitest', 'React Testing Library'],
+    skills: ['Jest', 'Vitest', 'React Testing Library'],
   },
 ]
 
