@@ -9,7 +9,20 @@
       "Bash(curl -sL \"https://www.redoyanulhaque.me/assets/index-Dy5XKj18.css\" -A \"Mozilla/5.0\" -o /tmp/redoyanul.css)",
       "Read(//tmp/**)",
       "Bash(curl -sL \"https://www.redoyanulhaque.me/assets/index-Dy5XKj18.css\" -A \"Mozilla/5.0\" -o \"C:/Users/galve/AppData/Local/Temp/redoyanul.css\")",
-      "Read(//c/Users/galve/AppData/Local/Temp/**)"
+      "Read(//c/Users/galve/AppData/Local/Temp/**)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(findstr -v node_modules)",
+      "Bash(npx tsc *)",
+      "mcp__claude-in-chrome__browser_batch",
+      "Bash(git push *)",
+      "Bash(C:\\\\Users\\\\galve\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\impeccable.cmd context *)",
+      "PowerShell(& \"C:\\\\Users\\\\galve\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\impeccable.cmd\" context 2>&1)",
+      "PowerShell(& \"C:\\\\Users\\\\galve\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\impeccable.cmd\" signals 2>&1)",
+      "PowerShell(& \"C:\\\\Users\\\\galve\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\impeccable.cmd\" detect --json app components public 2>&1)",
+      "PowerShell(& \"C:\\\\Users\\\\galve\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\impeccable.cmd\" detect --json --scope type app components 2>&1)",
+      "Bash(\"C:\\\\Users\\\\galve\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\impeccable.cmd\" context *)",
+      "Bash(\"C:\\\\Users\\\\galve\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\impeccable.cmd\" critique-storage *)"
     ]
   }
 }

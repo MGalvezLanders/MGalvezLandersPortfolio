@@ -2,11 +2,10 @@
 
 import { useEffect, useRef } from 'react'
 import { ArrowDown, Download } from 'lucide-react'
-import { gsap, ScrollTrigger } from '@/lib/gsap'
+import { gsap } from '@/lib/gsap'
 
 export default function Hero() {
   const rootRef = useRef<HTMLElement | null>(null)
-  const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const typewriterRef = useRef<HTMLSpanElement | null>(null)
 
   useEffect(() => {
@@ -17,16 +16,10 @@ export default function Hero() {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
       tl.fromTo(
-        '[data-hero-line-top]',
-        { scaleX: 0, transformOrigin: 'left center' },
-        { scaleX: 1, duration: 0.7, ease: 'power3.inOut' }
+        '[data-hero-first] [data-letter]',
+        { y: 80, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.65, stagger: 0.035 }
       )
-        .fromTo(
-          '[data-hero-first] [data-letter]',
-          { y: 80, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.65, stagger: 0.035 },
-          '-=0.35'
-        )
         .fromTo(
           '[data-hero-second] [data-letter]',
           { y: 80, opacity: 0 },
@@ -41,16 +34,10 @@ export default function Hero() {
         )
         .add(() => runTypewriter(), '-=0.2')
         .fromTo(
-          '[data-hero-line-bot]',
-          { scaleX: 0, transformOrigin: 'left center' },
-          { scaleX: 1, duration: 0.5, ease: 'power3.inOut' },
-          '+=0.5'
-        )
-        .fromTo(
           '[data-hero-bio]',
           { y: 24, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.65 },
-          '-=0.3'
+          '+=0.5'
         )
         .fromTo(
           '[data-hero-cta]',
@@ -65,7 +52,6 @@ export default function Hero() {
           '-=0.15'
         )
 
-      // Parallax on text wrapper
       gsap.to('[data-hero-parallax]', {
         yPercent: 30,
         ease: 'none',
@@ -81,7 +67,6 @@ export default function Hero() {
     return () => ctx.revert()
   }, [])
 
-  // Typewriter for "Full Stack Developer"
   const runTypewriter = () => {
     const el = typewriterRef.current
     if (!el) return
@@ -106,75 +91,6 @@ export default function Hero() {
     }, 50)
   }
 
-  // Particles canvas
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    let raf = 0
-    const dpr = Math.min(window.devicePixelRatio || 1, 2)
-    const particles: { x: number; y: number; vx: number; vy: number; r: number; o: number }[] = []
-    const COUNT = 38
-
-    const resize = () => {
-      canvas.width = window.innerWidth * dpr
-      canvas.height = window.innerHeight * dpr
-      canvas.style.width = window.innerWidth + 'px'
-      canvas.style.height = window.innerHeight + 'px'
-      ctx.scale(dpr, dpr)
-    }
-
-    const init = () => {
-      particles.length = 0
-      for (let i = 0; i < COUNT; i++) {
-        particles.push({
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight,
-          vx: (Math.random() - 0.5) * 0.15,
-          vy: (Math.random() - 0.5) * 0.15,
-          r: Math.random() * 1.4 + 0.4,
-          o: Math.random() * 0.5 + 0.2,
-        })
-      }
-    }
-
-    const draw = () => {
-      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
-      particles.forEach((p) => {
-        p.x += p.vx
-        p.y += p.vy
-        if (p.x < 0 || p.x > window.innerWidth) p.vx *= -1
-        if (p.y < 0 || p.y > window.innerHeight) p.vy *= -1
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(37, 99, 235, ${p.o * 0.45})`
-        ctx.fill()
-      })
-      raf = requestAnimationFrame(draw)
-    }
-
-    resize()
-    init()
-    draw()
-
-    const onResize = () => {
-      cancelAnimationFrame(raf)
-      ctx.setTransform(1, 0, 0, 1, 0, 0)
-      resize()
-      init()
-      draw()
-    }
-    window.addEventListener('resize', onResize)
-
-    return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener('resize', onResize)
-    }
-  }, [])
-
-  // Local keyframes for typewriter cursor blink
   useEffect(() => {
     const style = document.createElement('style')
     style.innerHTML = `@keyframes blink { 50% { opacity: 0 } }`
@@ -202,29 +118,8 @@ export default function Hero() {
       ref={rootRef}
       className="relative flex min-h-[100svh] w-full items-center overflow-hidden bg-bg-primary"
     >
-      <canvas
-        ref={canvasRef}
-        className="pointer-events-none absolute inset-0"
-        aria-hidden
-      />
-      {/* Background radial */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-70"
-        style={{
-          background:
-            'radial-gradient(ellipse at 50% 40%, rgba(37,99,235,0.10) 0%, transparent 65%)',
-        }}
-        aria-hidden
-      />
-
       <div data-hero-parallax className="container-fluid relative z-10 py-32">
-        <div
-          data-hero-line-top
-          className="accent-line-solid mb-10 w-full origin-left"
-          aria-hidden
-        />
-
-        <h1 className="text-display leading-[0.9] tracking-tightest">
+        <h1 className="text-display font-bold leading-[0.9] tracking-tightest">
           <span
             data-hero-first
             className="block overflow-hidden text-6xl sm:text-7xl md:text-8xl lg:text-[10rem]"
@@ -241,7 +136,7 @@ export default function Hero() {
 
         <div
           data-hero-line-mid
-          className="accent-line-solid my-10 w-full origin-left"
+          className="accent-line my-10 w-full origin-left"
           aria-hidden
         />
 
@@ -249,15 +144,9 @@ export default function Hero() {
           <span ref={typewriterRef} />
         </p>
 
-        <div
-          data-hero-line-bot
-          className="accent-line my-10 w-2/3 origin-left md:w-1/2"
-          aria-hidden
-        />
-
         <p
           data-hero-bio
-          className="max-w-2xl text-display text-xl leading-relaxed text-ink-secondary md:text-2xl"
+          className="mt-10 max-w-2xl text-display text-xl leading-relaxed text-ink-secondary md:text-2xl"
         >
           &ldquo;Apasionado por construir aplicaciones web modernas, escalables y con
           atención obsesiva al detalle. Cada línea de código tiene un propósito.&rdquo;
@@ -285,7 +174,7 @@ export default function Hero() {
         data-hero-scroll
         href="#sobre-mi"
         aria-label="Scroll down"
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-accent animate-bounce-slow"
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-accent"
       >
         <ArrowDown size={20} />
       </a>

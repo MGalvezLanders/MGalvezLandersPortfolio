@@ -38,7 +38,8 @@ export default function Projects() {
   }, [])
 
   const featured = projects.find((p) => p.featured)
-  const others = projects.filter((p) => !p.featured)
+  const primary = projects.filter((p) => !p.featured && !p.practice)
+  const practice = projects.filter((p) => p.practice)
 
   return (
     <section
@@ -55,11 +56,36 @@ export default function Projects() {
 
         <div className="flex flex-col gap-8">
           {featured && <FeaturedCard project={featured} />}
-          <div className="grid gap-8 md:grid-cols-2">
-            {others.map((p) => (
-              <ProjectCard key={p.slug} project={p} />
-            ))}
-          </div>
+          {primary.map((p) => (
+            <PrimaryCard key={p.slug} project={p} />
+          ))}
+          {practice.length > 0 && (
+            <div data-project-card className="border border-[color:var(--color-border)] p-6 md:p-8">
+              <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-ink-secondary">
+                Ejercicios de práctica
+              </h3>
+              <ul className="flex flex-col divide-y divide-[color:var(--color-border)]">
+                {practice.map((p) => (
+                  <li key={p.slug} className="flex items-center justify-between gap-4 py-4 first:pt-0 last:pb-0">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-base font-medium text-ink-primary">{p.title}</span>
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-ink-secondary">
+                        {p.stack.join(' · ')}
+                      </span>
+                    </div>
+                    <a
+                      href={p.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="shrink-0 inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.2em] text-accent transition-colors duration-300 hover:text-accent-light"
+                    >
+                      Ver <ArrowUpRight size={14} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -85,7 +111,7 @@ function FeaturedCard({ project }: { project: Project }) {
             )}
           </div>
 
-          <h3 className="text-display text-4xl leading-tight md:text-5xl lg:text-6xl">
+          <h3 className="text-display text-4xl font-semibold leading-tight md:text-5xl lg:text-6xl">
             {project.title}
           </h3>
 
@@ -172,56 +198,55 @@ function ComingSoonPreview({ title }: { title: string }) {
   )
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function PrimaryCard({ project }: { project: Project }) {
   return (
-    <article
-      data-project-card
-      className="card-elevated group relative flex flex-col overflow-hidden p-8"
-    >
-      {project.badge && (
-        <span className="mb-4 inline-flex w-fit border border-accent/40 bg-accent/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-accent-light">
-          {project.badge}
-        </span>
-      )}
-
-      <h3 className="text-display text-3xl leading-tight md:text-4xl">
-        {project.title}
-      </h3>
-
-      <p className="mt-3 text-sm leading-relaxed text-ink-secondary md:text-base">
-        {project.description}
-      </p>
-
-      {project.badgeNote && (
-        <p className="mt-3 italic text-xs text-accent-light/80">
-          {project.badgeNote}
-        </p>
-      )}
-
-      <ul className="mt-5 flex flex-wrap gap-2">
-        {project.stack.map((tech) => (
-          <li
-            key={tech}
-            className="border border-[color:var(--color-border)] px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-ink-secondary"
-          >
-            {tech}
-          </li>
-        ))}
-      </ul>
-
-      <div className="mt-auto pt-6">
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-accent transition-all duration-300 hover:text-accent-light"
-        >
-          Ver proyecto
-          <ArrowUpRight
-            size={16}
-            className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-          />
-        </a>
+    <article data-project-card className="card-elevated group relative p-8 md:p-10">
+      <div className="absolute -left-px top-0 h-12 w-px bg-accent" aria-hidden />
+      <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between md:gap-12">
+        <div className="flex flex-col gap-4">
+          {project.badge && (
+            <span className="w-fit border border-accent/40 bg-accent/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-accent-light">
+              {project.badge}
+            </span>
+          )}
+          <h3 className="text-display text-3xl font-medium leading-tight md:text-4xl">
+            {project.title}
+          </h3>
+          <p className="max-w-2xl text-base leading-relaxed text-ink-secondary md:text-lg">
+            {project.description}
+          </p>
+          <ul className="flex flex-wrap gap-2">
+            {project.stack.map((tech) => (
+              <li
+                key={tech}
+                className="border border-[color:var(--color-border)] bg-bg-card px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-ink-secondary"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+          {project.badgeNote && (
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-secondary">
+              {project.badgeNote}
+            </p>
+          )}
+        </div>
+        {!project.privateProject && (project.liveUrl || project.githubUrl) && (
+          <div className="flex shrink-0 flex-row gap-3 md:flex-col">
+            {project.liveUrl && (
+              <a href={project.liveUrl} target="_blank" rel="noreferrer" className="btn-accent">
+                Ver en vivo
+                <ArrowUpRight size={16} />
+              </a>
+            )}
+            {project.githubUrl && (
+              <a href={project.githubUrl} target="_blank" rel="noreferrer" className="btn-ghost">
+                GitHub
+                <Github size={16} />
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </article>
   )

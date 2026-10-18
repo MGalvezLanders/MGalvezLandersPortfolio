@@ -20,7 +20,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     title: 'Backend',
-    skills: ['Node.js', 'Express', 'NestJS', 'REST APIs', 'Swagger', 'Zod', 'PHP'],
+    skills: ['Node.js', 'Express', 'NestJS', 'REST APIs', 'Swagger', 'Auth0', 'Zod', 'PHP'],
   },
   {
     title: 'Bases de datos',
@@ -28,7 +28,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     title: 'Cloud & DevOps',
-    skills: ['AWS S3', 'Vercel', 'Netlify', 'Docker', 'Git', 'GitHub', 'CI/CD'],
+    skills: ['AWS S3', 'AWS SES', 'Railway', 'Vercel', 'Netlify', 'Docker', 'Git', 'GitHub', 'CI/CD', 'pnpm workspaces', 'Husky'],
   },
   {
     title: 'Testing',
@@ -41,12 +41,14 @@ export type Project = {
   title: string
   description: string
   stack: string[]
-  liveUrl: string
+  liveUrl?: string
   githubUrl?: string
   badge?: string
   badgeNote?: string
   featured?: boolean
   comingSoon?: boolean
+  practice?: boolean
+  privateProject?: boolean
 }
 
 export const projects: Project[] = [
@@ -71,6 +73,31 @@ export const projects: Project[] = [
     liveUrl: 'https://latam-pay-frontend.vercel.app/',
     badge: 'Proyecto Final',
     featured: true,
+  },
+  {
+    slug: 'monetae-intranet',
+    title: 'Intranet de Compliance — Monetae',
+    description:
+      'Plataforma corporativa en producción para Monetae que centraliza el cumplimiento normativo: SSO exclusivo con Auth0, RBAC N:M, LMS con cursos y certificados descargables, repositorio de políticas versionado con trazabilidad completa y canal de denuncias anónimo (seguimiento por código de un solo uso, analistas en bandejas aisladas por canal). Auditoría inmutable con doble barrera: repositorio append-only y triggers en PostgreSQL que bloquean modificaciones. En paralelo, módulo HRIS en desarrollo sobre la misma base. Arquitectura: monolito modular NestJS con DDD y Clean Architecture en monorepo pnpm; eventos de dominio desacoplados del transporte.',
+    stack: [
+      'TypeScript',
+      'NestJS',
+      'Next.js 15',
+      'PostgreSQL',
+      'TypeORM',
+      'Auth0',
+      'AWS S3',
+      'AWS SES',
+      'Docker',
+      'pnpm workspaces',
+      'OpenAPI/Swagger',
+      'Jest/Vitest',
+      'Railway',
+      'Netlify',
+    ],
+    badge: 'Freelance',
+    badgeNote: 'Proyecto privado — código confidencial',
+    privateProject: true,
   },
   {
     slug: 'la-gauchada',
@@ -100,6 +127,7 @@ export const projects: Project[] = [
       'Aplicación de gestión de tareas con TypeScript puro. CRUD completo, filtros por estado y persistencia en localStorage.',
     stack: ['TypeScript', 'CSS'],
     liveUrl: 'https://proyecto-m4-maximo-galvez-landers.vercel.app/',
+    practice: true,
   },
   {
     slug: 'chatbot',
@@ -108,13 +136,14 @@ export const projects: Project[] = [
       'Chatbot temático de la saga Rápido y Furioso. Respuestas predefinidas con lógica de conversación y UI animada.',
     stack: ['JavaScript', 'CSS', 'HTML'],
     liveUrl: 'https://proyecto-m3-maximo-galvez-landers-c.vercel.app/',
+    practice: true,
   },
 ]
 
 export const stats = [
   { value: '800', suffix: '+ hs', label: 'de formación intensiva en Henry' },
   { value: '5', suffix: '+', label: 'proyectos en producción' },
-  { value: 'B1', suffix: '', label: 'Inglés certificado (EF SET)' },
+  { value: 'B2', suffix: '', label: 'Inglés certificado (EF SET)' },
   { value: '13', suffix: ' años', label: 'de rugby competitivo' },
 ]
 
@@ -153,9 +182,9 @@ export type Certification = {
 
 export const certifications: Certification[] = [
   {
-    name: 'EF SET — Inglés B1 Intermedio',
+    name: 'EF SET — Inglés B2 Upper Intermediate',
     issuer: 'EF Standard English Test',
-    detail: '50/100 — Nivel B1 (Intermedio)',
+    detail: 'Nivel B2 Upper Intermediate',
     url: 'https://cert.efset.org/y19puv',
   },
 ]

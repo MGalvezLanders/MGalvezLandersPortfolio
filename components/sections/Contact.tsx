@@ -15,7 +15,7 @@ export default function Contact() {
   const [form, setForm] = useState({
     name: '',
     email: '',
-    subject: 'Freelance',
+    subject: 'Proyecto web',
     message: '',
   })
 
@@ -81,7 +81,7 @@ export default function Contact() {
         iconTheme: { primary: '#2563EB', secondary: '#FFFFFF' },
       })
       setStatus('success')
-      setForm({ name: '', email: '', subject: 'Freelance', message: '' })
+      setForm({ name: '', email: '', subject: 'Proyecto web', message: '' })
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Error al enviar.'
       toast.error(msg, {
@@ -191,7 +191,7 @@ export default function Contact() {
                 onChange={(e) => setForm({ ...form, subject: e.target.value })}
                 className={inputClass}
               >
-                <option>Freelance</option>
+                <option>Proyecto web</option>
                 <option>Trabajo full-time</option>
                 <option>Consulta</option>
                 <option>Otro</option>

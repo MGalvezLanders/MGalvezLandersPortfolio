@@ -91,7 +91,7 @@ export default function Rugby() {
                 <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
                   Actualmente
                 </span>
-                <p className="text-display text-2xl leading-tight md:text-3xl">
+                <p className="text-display text-2xl font-medium leading-tight md:text-3xl">
                   {rugby.currentDivision} —{' '}
                   <span className="text-accent-light">{rugby.currentTeam}</span>
                 </p>
@@ -121,7 +121,7 @@ export default function Rugby() {
                       <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
                         {m.year}
                       </span>
-                      <h4 className="text-display text-xl leading-tight md:text-2xl">
+                      <h4 className="text-display text-xl font-medium leading-tight md:text-2xl">
                         {m.title}
                       </h4>
                       <p className="mt-1 text-sm leading-relaxed text-ink-secondary md:text-base">

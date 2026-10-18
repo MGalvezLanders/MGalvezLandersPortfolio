@@ -56,7 +56,7 @@ export default function SectionTitle({
       )}
       <h2
         data-anim
-        className="text-display text-4xl leading-tight md:text-6xl lg:text-7xl"
+        className="text-display text-4xl font-semibold leading-tight md:text-6xl lg:text-7xl"
       >
         {title}
       </h2>

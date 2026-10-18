@@ -85,7 +85,7 @@ export default function Education() {
                   </div>
                   <div className="flex flex-1 flex-col gap-2">
                     <div className="flex flex-wrap items-center justify-between gap-3">
-                      <h4 className="text-display text-xl leading-tight md:text-2xl">
+                      <h4 className="text-display text-xl font-medium leading-tight md:text-2xl">
                         {edu.title}
                       </h4>
                       <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink-secondary">
@@ -126,7 +126,7 @@ export default function Education() {
                       <Award size={18} />
                     </div>
                     <div className="flex flex-1 flex-col gap-2">
-                      <h4 className="text-display text-lg leading-tight md:text-xl">
+                      <h4 className="text-display text-lg font-medium leading-tight md:text-xl">
                         {cert.name}
                       </h4>
                       <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink-secondary">

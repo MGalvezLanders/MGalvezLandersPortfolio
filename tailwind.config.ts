@@ -33,7 +33,11 @@ const config: Config = {
       },
       letterSpacing: {
         tightest: '-0.04em',
+        tight: '-0.02em',
+        wide: '0.2em',
+        wider: '0.25em',
         widest: '0.3em',
+        'ultra-wide': '0.4em',
       },
       animation: {
         'bounce-slow': 'bounce 2.4s infinite',

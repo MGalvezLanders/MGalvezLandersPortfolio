@@ -115,7 +115,7 @@ export default function About() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-1.5 text-accent-light underline decoration-accent/40 underline-offset-4 transition-colors duration-300 hover:text-accent hover:decoration-accent"
               >
-                Inglés B1 Intermedio certificado (EF SET) <ExternalLink size={14} />
+                Inglés B2 certificado (EF SET) <ExternalLink size={14} />
               </a>
               . Disponible para trabajo remoto y proyectos freelance.
             </p>
@@ -146,7 +146,7 @@ export default function About() {
                 const numeric = /^\d+$/.test(stat.value)
                 return (
                   <li key={i} data-about-stat className="flex items-baseline gap-4 border-b border-[color:var(--color-border)] pb-6 last:border-b-0 last:pb-0">
-                    <div className="text-display text-5xl text-accent-gradient md:text-6xl">
+                    <div className="text-display text-5xl font-bold text-accent md:text-6xl">
                       {numeric ? (
                         <span data-counter={stat.value}>0</span>
                       ) : (
