@@ -60,7 +60,7 @@ export default function Contact() {
 
     setStatus('loading')
     const t = toast.loading('Enviando mensaje…', {
-      style: { background: '#FFFFFF', color: '#0B1220', border: '1px solid rgba(37,99,235,0.5)' },
+      style: { background: '#32353A', color: '#D9DADC', border: '1px solid rgba(255,201,60,0.5)' },
     })
 
     try {
@@ -77,8 +77,8 @@ export default function Contact() {
 
       toast.success('¡Mensaje enviado! Te respondo pronto.', {
         id: t,
-        style: { background: '#FFFFFF', color: '#0B1220', border: '1px solid rgba(37,99,235,0.7)' },
-        iconTheme: { primary: '#2563EB', secondary: '#FFFFFF' },
+        style: { background: '#32353A', color: '#D9DADC', border: '1px solid rgba(255,201,60,0.7)' },
+        iconTheme: { primary: '#FFC93C', secondary: '#32353A' },
       })
       setStatus('success')
       setForm({ name: '', email: '', subject: 'Proyecto web', message: '' })
@@ -86,7 +86,7 @@ export default function Contact() {
       const msg = err instanceof Error ? err.message : 'Error al enviar.'
       toast.error(msg, {
         id: t,
-        style: { background: '#FFFFFF', color: '#0B1220', border: '1px solid #d63b34' },
+        style: { background: '#32353A', color: '#D9DADC', border: '1px solid #d63b34' },
       })
       setStatus('error')
     }

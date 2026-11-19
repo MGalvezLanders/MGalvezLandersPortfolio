@@ -7,17 +7,17 @@
 :root {
   --font-body: var(--font-geist-sans), system-ui, sans-serif;
   --font-display: var(--font-geist-sans), system-ui, sans-serif;
-  --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f4f7fb;
-  --color-bg-card: #ffffff;
-  --color-accent-primary: #2563eb;
-  --color-accent-light: #60a5fa;
-  --color-accent-muted: #93c5fd;
-  --color-text-primary: #0b1220;
-  --color-text-secondary: #475569;
-  --color-text-muted: #94a3b8;
-  --color-border: rgba(15, 23, 42, 0.08);
-  --color-border-hover: rgba(37, 99, 235, 0.55);
+  --color-bg-primary: #2B2D31;
+  --color-bg-secondary: #242528;
+  --color-bg-card: #32353A;
+  --color-accent-primary: #FFC93C;
+  --color-accent-light: #FFD97A;
+  --color-accent-muted: #FFE9A6;
+  --color-text-primary: #D9DADC;
+  --color-text-secondary: #9B9D9F;
+  --color-text-muted: #6D6F72;
+  --color-border: rgba(217, 218, 220, 0.1);
+  --color-border-hover: rgba(255, 201, 60, 0.45);
 }
 
 * {
@@ -55,7 +55,7 @@ body {
 
 ::selection {
   background: var(--color-accent-primary);
-  color: #0b080c;
+  color: #2B2D31;
 }
 
 /* Scrollbar */
@@ -111,7 +111,7 @@ body {
 
   .accent-line-solid {
     height: 1px;
-    background: var(--color-ink-primary, #0b080c);
+    background: var(--color-ink-primary, #D9DADC);
     opacity: 0.18;
   }
 
@@ -140,6 +140,7 @@ body {
 
   .btn-accent:hover {
     background: var(--color-accent-primary);
+    color: #2B2D31;
   }
 }
 
@@ -174,8 +175,8 @@ body {
 .card-elevated:hover {
   border-color: var(--color-border-hover);
   box-shadow:
-    0 30px 60px -30px rgba(15, 23, 42, 0.12),
-    0 0 0 1px rgba(37, 99, 235, 0.15);
+    0 30px 60px -30px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 201, 60, 0.2);
 }
 
 /* Reveal helpers — invisible by default until GSAP plays */

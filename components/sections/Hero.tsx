@@ -74,7 +74,7 @@ export default function Hero() {
     el.textContent = ''
     const cursor = document.createElement('span')
     cursor.textContent = '▍'
-    cursor.style.color = '#2563eb'
+    cursor.style.color = '#FFC93C'
     cursor.style.marginLeft = '4px'
     cursor.style.animation = 'blink 1s steps(1) infinite'
     el.appendChild(cursor)
@@ -153,7 +153,7 @@ export default function Hero() {
         </p>
 
         <div className="mt-12 flex flex-col gap-4 sm:flex-row">
-          <a data-hero-cta href="#proyectos" className="btn-accent !bg-[#2563eb] !text-white hover:!bg-white hover:!text-[#2563eb]">
+          <a data-hero-cta href="#proyectos" className="btn-accent !bg-[#FFC93C] !text-[#2B2D31] hover:!bg-transparent hover:!text-[#FFC93C]">
             Ver proyectos
             <ArrowDown size={16} />
           </a>

@@ -121,11 +121,11 @@ export default function DomeGallery({
   logoMode = false,
   logoTheme = 'dark',
 }: DomeGalleryProps) {
-  const tileBg       = logoTheme === 'light' ? 'rgba(37,99,235,0.05)'   : 'rgba(255,255,255,0.05)';
-  const tileBorder   = logoTheme === 'light' ? '1px solid rgba(37,99,235,0.13)' : '1px solid rgba(255,255,255,0.08)';
-  const tileText     = logoTheme === 'light' ? 'rgba(71,85,105,0.85)'   : 'rgba(255,255,255,0.6)';
-  const overlayBg    = logoTheme === 'light' ? '#ffffff'                 : '#0d1629';
-  const overlayText  = logoTheme === 'light' ? 'rgba(15,23,42,0.88)'    : 'rgba(255,255,255,0.88)';
+  const tileBg       = logoTheme === 'light' ? 'rgba(255,201,60,0.05)'  : 'rgba(255,201,60,0.05)';
+  const tileBorder   = logoTheme === 'light' ? '1px solid rgba(255,201,60,0.15)' : '1px solid rgba(217,218,220,0.1)';
+  const tileText     = logoTheme === 'light' ? 'rgba(155,157,159,0.85)' : 'rgba(217,218,220,0.6)';
+  const overlayBg    = logoTheme === 'light' ? '#32353A'                : '#32353A';
+  const overlayText  = logoTheme === 'light' ? 'rgba(217,218,220,0.88)' : 'rgba(217,218,220,0.88)';
   const rootRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLDivElement>(null);
   const sphereRef = useRef<HTMLDivElement>(null);

@@ -85,7 +85,7 @@ export default function NavBar() {
             ))}
           </ul>
 
-          <a href="#contacto" className="hidden md:inline-flex btn-accent !px-5 !py-2.5 !text-xs">
+          <a href="#contacto" className="hidden md:inline-flex btn-accent !px-5 !py-2.5 !text-xs !bg-[#FFC93C] !text-[#2B2D31] hover:!bg-transparent hover:!text-[#FFC93C]">
             Contratame
           </a>
 
@@ -132,7 +132,7 @@ export default function NavBar() {
             <a
               href="#contacto"
               onClick={() => setOpen(false)}
-              className="btn-accent inline-flex"
+              className="btn-accent inline-flex !bg-[#FFC93C] !text-[#2B2D31] hover:!bg-transparent hover:!text-[#FFC93C]"
             >
               Contratame
             </a>
