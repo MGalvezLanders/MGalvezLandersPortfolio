@@ -86,7 +86,7 @@ export default function Contact() {
       const msg = err instanceof Error ? err.message : 'Error al enviar.'
       toast.error(msg, {
         id: t,
-        style: { background: '#32353A', color: '#D9DADC', border: '1px solid #d63b34' },
+        style: { background: '#32353A', color: '#D9DADC', border: '1px solid rgba(255,201,60,0.5)' },
       })
       setStatus('error')
     }

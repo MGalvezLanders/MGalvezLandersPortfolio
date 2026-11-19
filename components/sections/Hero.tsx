@@ -116,7 +116,7 @@ export default function Hero() {
     <section
       id="inicio"
       ref={rootRef}
-      className="relative flex min-h-[100svh] w-full items-center overflow-hidden bg-bg-primary"
+      className="relative flex min-h-[100svh] w-full items-center overflow-hidden bg-color-bg-primary"
     >
       <div data-hero-parallax className="container-fluid relative z-10 py-32">
         <h1 className="text-display font-bold leading-[0.9] tracking-tightest">

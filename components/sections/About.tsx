@@ -76,7 +76,7 @@ export default function About() {
     <section
       id="sobre-mi"
       ref={rootRef}
-      className="relative w-full bg-bg-secondary py-32"
+      className="relative w-full bg-color-bg-secondary py-32"
     >
       <div className="container-fluid">
         <SectionTitle eyebrow="01 / Sobre mí" title="Quién soy" />

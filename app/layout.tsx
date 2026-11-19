@@ -61,7 +61,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#FFFFFF',
+  themeColor: '#2B2D31',
   width: 'device-width',
   initialScale: 1,
 }
@@ -84,9 +84,9 @@ export default function RootLayout({
           toastOptions={{
             duration: 4000,
             style: {
-              background: '#FFFFFF',
-              color: '#0B1220',
-              border: '1px solid rgba(37,99,235,0.40)',
+              background: '#32353A',
+              color: '#D9DADC',
+              border: '1px solid rgba(255,201,60,0.40)',
               fontFamily: 'var(--font-body)',
               fontSize: '14px',
             },
