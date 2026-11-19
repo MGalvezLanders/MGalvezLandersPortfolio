@@ -35,7 +35,7 @@ export default function Skills() {
   }, [])
 
   return (
-    <section id="skills" ref={rootRef} className="relative w-full bg-bg-secondary py-32">
+    <section id="skills" ref={rootRef} className="relative w-full bg-bg-primary py-32">
       <div className="container-fluid">
         <SectionTitle
           eyebrow="02 / Capacidades"

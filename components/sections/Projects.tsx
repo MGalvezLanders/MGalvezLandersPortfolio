@@ -45,7 +45,7 @@ export default function Projects() {
     <section
       id="proyectos"
       ref={rootRef}
-      className="relative w-full bg-bg-primary py-32"
+      className="relative w-full bg-bg-secondary py-32"
     >
       <div className="container-fluid">
         <SectionTitle

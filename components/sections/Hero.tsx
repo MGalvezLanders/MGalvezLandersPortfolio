@@ -153,7 +153,7 @@ export default function Hero() {
         </p>
 
         <div className="mt-12 flex flex-col gap-4 sm:flex-row">
-          <a data-hero-cta href="#proyectos" className="btn-accent">
+          <a data-hero-cta href="#proyectos" className="btn-accent !bg-[#2563eb] !text-white hover:!bg-white hover:!text-[#2563eb]">
             Ver proyectos
             <ArrowDown size={16} />
           </a>
