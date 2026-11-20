@@ -6,7 +6,7 @@ import { contact } from '@/lib/data'
 
 export default function Footer() {
   return (
-    <footer className="relative w-full bg-bg-primary pt-16 pb-10">
+    <footer className="relative w-full bg-color-bg-primary pt-16 pb-10">
       <div className="container-fluid">
         <AccentDivider align="left" />
 

@@ -45,7 +45,7 @@ export default function Projects() {
     <section
       id="proyectos"
       ref={rootRef}
-      className="relative w-full bg-bg-secondary py-32"
+      className="relative w-full bg-colorbg-secondary py-32"
     >
       <div className="container-fluid">
         <SectionTitle
@@ -115,7 +115,7 @@ function FeaturedCard({ project }: { project: Project }) {
             {project.title}
           </h3>
 
-          <p className="max-w-xl text-base leading-relaxed text-ink-secondary md:text-lg">
+          <p className="max-w-xl text-base leading-relaxed text-color-text-secondary md:text-lg">
             {project.description}
           </p>
 
@@ -123,7 +123,7 @@ function FeaturedCard({ project }: { project: Project }) {
             {project.stack.map((tech) => (
               <li
                 key={tech}
-                className="border border-[color:var(--color-border)] bg-bg-card px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-ink-secondary"
+                className="border border-[color:var(--color-accent-muted)] bg-color-bg-card px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-color-text-secondary"
               >
                 {tech}
               </li>
@@ -161,7 +161,7 @@ function FeaturedCard({ project }: { project: Project }) {
           </div>
         </div>
 
-        <div className="relative aspect-[4/3] w-full overflow-hidden border border-[color:var(--color-border)] transition-colors duration-300 group-hover:border-accent">
+        <div className="relative aspect-[4/3] w-full overflow-hidden border border-[color:var(--color-border)] transition-colors duration-300 group-hover:color-border-accent">
           {project.comingSoon ? (
             <ComingSoonPreview title={project.title} />
           ) : (
@@ -182,10 +182,10 @@ function FeaturedCard({ project }: { project: Project }) {
 function ComingSoonPreview({ title }: { title: string }) {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-bg-secondary p-8 text-center">
-      <div className="flex h-14 w-14 items-center justify-center border border-accent/40 bg-accent/5 text-accent">
+      <div className="flex h-14 w-14 items-center justify-center border color-border-accent/40 color-bg-accent/5 color-text-accent-light transition-colors duration-300 group-hover:color-border-accent group-hover:color-bg-accent/10 group-hover:color-text-accent">
         <Rocket size={22} />
       </div>
-      <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
+      <p className="font-mono text-[10px] uppercase tracking-[0.3em] color-text-accent">
         En despliegue
       </p>
       <p className="text-display text-xl leading-tight text-ink-primary md:text-2xl">
@@ -201,32 +201,32 @@ function ComingSoonPreview({ title }: { title: string }) {
 function PrimaryCard({ project }: { project: Project }) {
   return (
     <article data-project-card className="card-elevated group relative p-8 md:p-10">
-      <div className="absolute -left-px top-0 h-12 w-px bg-accent" aria-hidden />
+      <div className="absolute -left-px top-0 h-12 w-px bg-color-accent-primary" aria-hidden />
       <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between md:gap-12">
         <div className="flex flex-col gap-4">
           {project.badge && (
-            <span className="w-fit border border-accent/40 bg-accent/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-accent-light">
+            <span className="w-fit border border-color-accent-muted bg-color-bg-card px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-color-text-secondary">
               {project.badge}
             </span>
           )}
           <h3 className="text-display text-3xl font-medium leading-tight md:text-4xl">
             {project.title}
           </h3>
-          <p className="max-w-2xl text-base leading-relaxed text-ink-secondary md:text-lg">
+          <p className="max-w-2xl text-base leading-relaxed text-color-text-secondary md:text-lg">
             {project.description}
           </p>
           <ul className="flex flex-wrap gap-2">
             {project.stack.map((tech) => (
               <li
                 key={tech}
-                className="border border-[color:var(--color-border)] bg-bg-card px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-ink-secondary"
+                className="border border-[color:var(--color-border)] bg-color-bg-card px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-color-text-secondary"
               >
                 {tech}
               </li>
             ))}
           </ul>
           {project.badgeNote && (
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-secondary">
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-color-text-secondary">
               {project.badgeNote}
             </p>
           )}
